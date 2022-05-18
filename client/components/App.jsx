@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+
+import MainContainer from './MainContainer'
 import Header from './Header'
-import LoanForm from './LoanForm'
 
 function App() {
   return (
     <>
       <div className="app">
         <Header />
-        <LoanForm />
+        <MainContainer />
       </div>
     </>
   )
