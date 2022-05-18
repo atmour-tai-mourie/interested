@@ -5,6 +5,7 @@ import store from './store'
 
 import App from './components/App'
 import { Grommet } from 'grommet'
+import { Router } from 'react-router-dom'
 
 const theme = {
   global: {
@@ -20,7 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
       <Grommet theme={theme}>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </Grommet>
     </Provider>,
     document.getElementById('app')
