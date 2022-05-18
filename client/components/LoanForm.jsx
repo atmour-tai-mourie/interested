@@ -1,19 +1,26 @@
 import React from 'react'
 import { FormField, TextInput, Select } from 'grommet'
 
-function LoanForm() {
+function LoanForm({loanDetails, setLoanDetails}) {
+  const {interestRate, term, loanAmount, paymentFrequency} = loanDetails
+
+
+
+
+
+
   return (
-    <div>
+    <div className="form__div">
       <h2>New Loan</h2>
       <form>
         <FormField label="Term">
           <Select options={[1, 2, 3, 4, 5]} defaultValue={1} />
         </FormField>
         <FormField label="Interest Rate">
-          <TextInput />
+          <TextInput name='interestRate' value={interestRate}/>
         </FormField>
         <FormField label="Loan Amount">
-          <TextInput />
+          <TextInput name='loanAmount' value={loanAmount}/>
         </FormField>
         <FormField label="Payment Frequency">
           <Select
@@ -21,6 +28,7 @@ function LoanForm() {
             defaultValue="Weekly"
           />
         </FormField>
+        <button className="form__button">View Loan Details</button>
       </form>
     </div>
   )
