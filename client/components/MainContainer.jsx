@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import LoanForm from './LoanForm'
 import Results from './Results'
 
 function MainContainer() {
+  const navigate = useNavigate()
+
   const [loanDetails, setLoanDetails] = useState({
     term: '',
     īnterestRate: '',
@@ -16,6 +18,11 @@ function MainContainer() {
     setLoanDetails({ ...loanDetails, [e.target.name]: e.target.value })
   }
 
+  function handleFormSubmit(e) {
+    e.preventDefault()
+    navigate('/results')
+  }
+
   return (
     <main>
       <Routes>
@@ -25,6 +32,7 @@ function MainContainer() {
             <LoanForm
               handleFormChange={handleFormChange}
               loanDetails={loanDetails}
+              handleFormSubmit={handleFormSubmit}
             />
           }
         />
