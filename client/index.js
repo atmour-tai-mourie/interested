@@ -5,7 +5,7 @@ import store from './store'
 
 import App from './components/App'
 import { Grommet } from 'grommet'
-import { Router } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const theme = {
   global: {
