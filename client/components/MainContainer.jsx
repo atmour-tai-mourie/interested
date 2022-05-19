@@ -36,7 +36,10 @@ function MainContainer() {
             />
           }
         />
-        <Route path="/results" element={<Results />} />
+        <Route
+          path="/results"
+          element={<Results loanDetails={loanDetails} />}
+        />
       </Routes>
     </main>
   )

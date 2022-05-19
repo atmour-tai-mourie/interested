@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Results() {
+function Results({ loanDetails }) {
   return <></>
 }
 
