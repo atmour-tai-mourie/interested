@@ -1,17 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { useState } from 'react/cjs/react.production.min'
 import LoanForm from './LoanForm'
 import Results from './Results'
 
 function MainContainer() {
-  const [loanDetails, setLoanDetails] = useState({})
+  const [loanDetails, setLoanDetails] = useState({
+    term: '',
+    īnterestRate: '',
+    loanAmount: '',
+    duration: 1,
+    paymentFrequency: 'Weekly',
+  })
+
+  function handleFormChange(e) {
+    setLoanDetails({ ...loanDetails, [e.target.name]: e.target.value })
+  }
 
   return (
     <main>
       <Routes>
-        <Route path="/" content={<LoanForm />} />
-        <Route path="/results" content={<Results />} />
+        <Route
+          path="/"
+          element={
+            <LoanForm
+              handleFormChange={handleFormChange}
+              loanDetails={loanDetails}
+            />
+          }
+        />
+        <Route path="/results" element={<Results />} />
       </Routes>
     </main>
   )
