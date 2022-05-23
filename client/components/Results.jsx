@@ -1,3 +1,4 @@
+import { DataTable, Text } from 'grommet'
 import React, { useEffect, useState } from 'react'
 import { getLoanRepaymentDetails } from './resultsHelper'
 
@@ -29,43 +30,78 @@ function Results({ loanDetails }) {
   return (
     showResults && (
       <>
-        <div className="yearly__results__div">
-          <p>
-            {loanRepaymentDetails[0].paymentFrequency} payment: $
-            {loanRepaymentDetails[0].payment.toFixed()}
-          </p>
-          <p>
-            Annual Amount Paid: ${loanRepaymentDetails[0].annualCost.toFixed()}
-          </p>
-        </div>
-        <div className="total__results__div">
-          <p>
-            Total Amount Paid: $
-            {loanRepaymentDetails
-              .reduce((prevTotal, year) => prevTotal + year.annualCost, 0)
-              .toFixed()}
-          </p>
-          <p>
-            Total Interest Paid: $
-            {loanRepaymentDetails
-              .reduce((prevTotal, year) => prevTotal + year.interestPaid, 0)
-              .toFixed()}
-          </p>
-          <p>
-            Total Principle Paid: $
-            {loanRepaymentDetails
-              .reduce((prevTotal, year) => prevTotal + year.principlePaid, 0)
-              .toFixed()}
-          </p>
-          <p>
-            Total Amount Remaining:{' '}
-            {loanRepaymentDetails[
-              loanRepaymentDetails.length - 1
-            ].closingBalance.toFixed()}
-          </p>
+        <h2>Loan Summary</h2>
+        <div className="loan__summary__div">
+          <div className="results__div">
+            <p>
+              {loanRepaymentDetails[0].paymentFrequency} payment: $
+              {loanRepaymentDetails[0].payment.toFixed()}
+            </p>
+            <p>
+              Annual Amount Paid: $
+              {loanRepaymentDetails[0].annualCost.toFixed()}
+            </p>
+          </div>
+          <div className="results__div">
+            <p>
+              Total Amount Paid: $
+              {loanRepaymentDetails
+                .reduce((prevTotal, year) => prevTotal + year.annualCost, 0)
+                .toFixed()}
+            </p>
+            <p>
+              Total Interest Paid: $
+              {loanRepaymentDetails
+                .reduce((prevTotal, year) => prevTotal + year.interestPaid, 0)
+                .toFixed()}
+            </p>
+            <p>
+              Total Principle Paid: $
+              {loanRepaymentDetails
+                .reduce((prevTotal, year) => prevTotal + year.principlePaid, 0)
+                .toFixed()}
+            </p>
+            <p>
+              Total Amount Remaining:{' '}
+              {loanRepaymentDetails[
+                loanRepaymentDetails.length - 1
+              ].closingBalance.toFixed()}
+            </p>
+          </div>
         </div>
         <div className="results__table__div">
-          <table>
+          <DataTable
+            columns={[
+              {
+                property: 'year',
+                header: <Text>Year</Text>,
+                primary: true,
+                align: 'center',
+              },
+              {
+                property: 'interestPaid',
+                header: <Text>Interest Paid</Text>,
+                align: 'center',
+              },
+              {
+                property: 'principlePaid',
+                header: <Text>Principle Paid</Text>,
+                align: 'center',
+              },
+              {
+                property: 'closingBalance',
+                header: <Text>Balance Remaining</Text>,
+                align: 'center',
+              },
+            ]}
+            data={loanRepaymentDetails.map((year) => ({
+              year: year.loanYear,
+              interestPaid: `$${year.interestPaid.toFixed()}`,
+              principlePaid: `$${year.principlePaid.toFixed()}`,
+              closingBalance: `$${year.closingBalance.toFixed()}`,
+            }))}
+          />
+          {/* <table>
             <tr>
               <th>Year</th>
               <th>Interest Paid</th>
@@ -80,7 +116,7 @@ function Results({ loanDetails }) {
                 <td>${year.closingBalance.toFixed()}</td>
               </tr>
             ))}
-          </table>
+          </table> */}
         </div>
       </>
     )
