@@ -38,8 +38,8 @@ function LoanForm({ handleFormChange, loanDetails, handleFormSubmit }) {
           <TextInput
             type="number"
             onChange={handleFormChange}
-            name="term"
-            value={loanDetails.term}
+            name="termRemaining"
+            value={loanDetails.termRemaining}
           />
         </FormField>
         <FormField label="Payment Frequency">

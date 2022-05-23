@@ -7,8 +7,8 @@ function MainContainer() {
   const navigate = useNavigate()
 
   const [loanDetails, setLoanDetails] = useState({
-    term: '',
-    īnterestRate: '',
+    termRemaining: 1,
+    interestRate: '',
     loanAmount: '',
     duration: 1,
     paymentFrequency: 'Weekly',
