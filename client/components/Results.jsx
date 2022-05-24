@@ -1,4 +1,4 @@
-import { DataTable, Text } from 'grommet'
+import { Chart, DataChart, DataTable, Tab, Tabs, Text } from 'grommet'
 import React, { useEffect, useState } from 'react'
 import { getLoanRepaymentDetails } from './resultsHelper'
 
@@ -101,23 +101,30 @@ function Results({ loanDetails }) {
               closingBalance: `$${year.closingBalance.toFixed()}`,
             }))}
           />
-          {/* <table>
-            <tr>
-              <th>Year</th>
-              <th>Interest Paid</th>
-              <th>Principle Paid</th>
-              <th>Remaining Balance</th>
-            </tr>
-            {loanRepaymentDetails.map((year) => (
-              <tr key={year.loanYear}>
-                <td>{year.loanYear}</td>
-                <td>${year.interestPaid.toFixed()}</td>
-                <td>${year.principlePaid.toFixed()}</td>
-                <td>${year.closingBalance.toFixed()}</td>
-              </tr>
-            ))}
-          </table> */}
         </div>
+        <Tabs>
+          <Tab title="Remaining Balance">
+            <DataChart
+              data={loanRepaymentDetails.map((year) => ({
+                year: year.loanYear + 1,
+                balance: year.closingBalance,
+              }))}
+              series={['year', 'balance']}
+              bounds={{
+                y: [loanDetails.loanAmount / 2, loanDetails.loanAmount],
+              }}
+            />
+          </Tab>
+          <Tab title="Interest Paid">
+            {' '}
+            <DataChart
+              data={loanRepaymentDetails.map((year) => {
+                return { year: year.loanYear + 1, interest: year.interestPaid }
+              })}
+              series={['year', 'interest']}
+            />
+          </Tab>
+        </Tabs>
       </>
     )
   )
