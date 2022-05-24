@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormField, TextInput, Select } from 'grommet'
+import { FormField, TextInput, Select, Button } from 'grommet'
 
 function LoanForm({ handleFormChange, loanDetails, handleFormSubmit }) {
   console.log(loanDetails)
@@ -50,9 +50,12 @@ function LoanForm({ handleFormChange, loanDetails, handleFormSubmit }) {
             defaultValue={loanDetails.paymentFrequency}
           />
         </FormField>
-        <button className="form__button" onClick={handleFormSubmit}>
-          View Loan Details
-        </button>
+        <Button
+          primary
+          label="View Loan Details"
+          onClick={handleFormSubmit}
+          margin="small"
+        />
       </form>
     </div>
   )
