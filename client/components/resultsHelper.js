@@ -83,13 +83,6 @@ export function getLoanRepaymentDetails(
   const principlePaid = getPrinciplePaid(openingBalance, closingBalance)
   const annualCost = getAnnualCost(payment, paymentFrequency)
   const interestPaid = getInterestpaid(annualCost, principlePaid)
-  console.log(
-    interestRate,
-    paymentFrequency,
-    yearsRemainingOnLoan,
-    openingBalance,
-    getYearlyPayments(paymentFrequency)
-  )
   return {
     payment,
     closingBalance,
