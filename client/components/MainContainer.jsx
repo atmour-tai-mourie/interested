@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
+import ForecastForm from './ForecastForm'
 import LoanForm from './LoanForm'
 import Results from './Results'
+import SelectCalculator from './SelectCalculator'
 
 function MainContainer() {
   const navigate = useNavigate()
@@ -26,8 +28,9 @@ function MainContainer() {
   return (
     <main>
       <Routes>
+        <Route path="/" element={<SelectCalculator />} />
         <Route
-          path="/"
+          path="/calc"
           element={
             <LoanForm
               handleFormChange={handleFormChange}
@@ -40,6 +43,7 @@ function MainContainer() {
           path="/results"
           element={<Results loanDetails={loanDetails} />}
         />
+        <Route path="/forecast" element={<ForecastForm />} />
       </Routes>
     </main>
   )
