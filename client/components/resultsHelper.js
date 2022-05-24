@@ -18,7 +18,7 @@ function getPeriodInterestRate(interestRate, paymentPeriod) {
   )
 }
 
-function getRemaingPayments(loanTermRemaining, paymentPeriod) {
+function getRemainingPayments(loanTermRemaining, paymentPeriod) {
   return loanTermRemaining * getYearlyPayments(paymentPeriod)
 }
 
@@ -65,7 +65,7 @@ export function getLoanRepaymentDetails(
     interestRate,
     paymentFrequency
   )
-  const remainingPayments = getRemaingPayments(
+  const remainingPayments = getRemainingPayments(
     yearsRemainingOnLoan,
     paymentFrequency
   )
